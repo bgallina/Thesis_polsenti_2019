@@ -1,0 +1,37 @@
+***SCRIPT ORDER***
+
+Preprocess:
+
+- json_parser.R
+- get_corpus.R
+----meanwhile----
+- hunlp.py
+- lemma_read.R
+- stopword.R
+--------------
+- replace_ent.R
+- NER_preprocess.R
+----meanwhile----
+- DBPedia Spotlight (pro.txt)
+--------------
+- NER_read.R
+- training.R
+- merge_training.R
+
+Build models:
+
+- fit_lexi.R
+- fun.R
+- SVM.R
+- NB.R
+- NB_acc.R
+- hibrid_SVM.R
+- hibrid_svm_bi
+- hibrid_nb.R
+
+Hypotesis:
+
+- multiplot_fn.R
+- H2.R
+- H3_senti.R
+- H3_survey.R

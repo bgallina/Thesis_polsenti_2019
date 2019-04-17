@@ -1,0 +1,7 @@
+# https://sourceforge.net/projects/dbpedia-spotlight/?fbclid=IwAR3UFVPUa_C2Czf-dpEFPJ63QErvngpwGFki89SjLw90ViN5zXXg_Ks_RmI
+
+url = http://localhost:2222/rest/annotate
+--data-urlencode "confidence=0.3" 
+--data-urlencode "support=5" 
+-H "accept: application/json" 
+-G
