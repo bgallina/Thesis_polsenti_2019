@@ -26,7 +26,6 @@ Build models:
 - NB.R
 - NB_acc.R
 - hibrid_SVM.R
-- hibrid_svm_bi
 - hibrid_nb.R
 
 Hypotesis:
