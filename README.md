@@ -1,5 +1,5 @@
 #  Szentiment elemzés online híroldalak cikkein (2019) 
-## Mesterképzés szakdolgozat
+#### Mesterképzés szakdolgozat
 
 Eötvös Loránd Tudományegyetem <br>
 Társadalomtudományi Kar <br>
