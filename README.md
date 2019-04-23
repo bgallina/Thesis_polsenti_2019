@@ -14,5 +14,6 @@ A szakdolgozathoz készült interaktív vizualizáció: https://bgallina.shinyap
 * python: lemmatizálás kódja (HuNLP projekt)
 * script: R kódok, a script_order.txt fájl tartalmazza az R kódok futtatási sorrendjét
 * shiny code: Shiny vizualizáció kódja
+* results: H2 hipotézis eredményei
 
 
