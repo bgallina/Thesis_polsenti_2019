@@ -2,7 +2,7 @@
 ##########################
 ########## H2 ############
 ##########################
-
+ 
 ### read ###
 
 setwd("~/Egyetemi/survey/Szakdolgozat/thesis_polsenti/src")
