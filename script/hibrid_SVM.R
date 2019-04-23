@@ -128,7 +128,7 @@ dim(total_dtm)
 rm(biased_dtm, check, negdtm, pozdtm, negscore, neutral_dtm, terms, y, lista, checkterms, df, neutralterms, opinion)
 
 validation <- row.names(corpus[corpus$senti==F,])
-train <- sample(row.names(corpus[corpus$senti==T,]),nrow(corpus[corpus$senti==T,])*0.7)
+train <- sample(row.names(corpus[corpus$senti==T,]),2000)
 
 
 df.train <- corpus[train,]
@@ -166,12 +166,12 @@ svm_tune <- tune(svm, cat~., data=dtm.train.svm1,
 summary(svm_tune)
 print(svm_tune)
 
-x <- sample(nrow(dtm.validation.svm1), 500)
+#x <- sample(nrow(dtm.validation.svm1), 500)
 
-model  <- svm(cat~., data = dtm.train.svm1, kernel = "radial", cost = 70, gamma = 0.01, epsilon = 0, scale = F) 
-fit1.pred <- predict(model, dtm.validation.svm1[x,])
+model  <- svm(cat~., data = dtm.train.svm1, kernel = "radial", cost = 30, gamma = 0.01, epsilon = 0, scale = F) 
+fit1.pred <- predict(model, dtm.validation.svm1)
 
 ### Performance ###
 
-get_performance(fit1.pred, dtm.validation.svm1$cat[x])
+get_performance(fit1.pred, dtm.validation.svm1$cat)
 

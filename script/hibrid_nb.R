@@ -127,7 +127,7 @@ dim(total_dtm)
 rm(biased_dtm, check, negdtm, pozdtm, negscore, neutral_dtm, terms, y, lista, checkterms, df, neutralterms, opinion)
 
 validation <- row.names(corpus[corpus$senti==F,])
-train <- sample(row.names(corpus[corpus$senti==T,]),nrow(corpus[corpus$senti==T,])*0.7)
+train <- sample(row.names(corpus[corpus$senti==T,]),2000)
 
 df.train <- corpus[train,]
 df.validation <- corpus[validation,]
@@ -155,12 +155,12 @@ trainNB <- apply(dtm.train, 2, convert_count)
 
 rm(dtm.train)
 
-x <- sample(nrow(validationNB), 500)
+#x <- sample(nrow(validationNB), 500)
 
 classifier <- naiveBayes(trainNB, as.factor(df.train$score), laplace = 0.1)
-pred <- predict(classifier, newdata=validationNB[x,])
+pred <- predict(classifier, newdata=validationNB)
 
 ### Performance ###
 
-get_performance(pred, df.validation$finalsenti[x])
+get_performance(pred, df.validation$finalsenti)
 

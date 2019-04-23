@@ -17,6 +17,7 @@ library(questionr)
 library(reshape2)
 
 
+
 ### creating variables ###
 
 ellenzeki <- c('24.hu', '444.hu', 'index.hu', 'nepszava.hu', 'alfahir.hu', 'atv.hu')
@@ -45,6 +46,7 @@ VonaG <- data.frame(corpus[corpus$VonaG==1 & corpus$pred!=0,])
 
 ### Odds ratio és khi négyzet ###
 
+
 get_chi <- function(prediction, groupA, groupB, data){
   chi_ell <- chisq.test(table(groupA[groupB==1], prediction[groupB==1]))
   chi_korm <- chisq.test(table(groupA[groupB==2], prediction[groupB==2]))
@@ -55,7 +57,7 @@ get_chi <- function(prediction, groupA, groupB, data){
   #CMH <- mantelhaen.test(df)
   x[,5] <- paste(x[,1], x[,2])
   CMH <- chisq.test(table(x[,5], x$value))
-  CV <- cramer(x[,4:5])
+  CV <- cramer.v(table(x[,4:5]))
   print(df)
   result <- list("Ellenzéki chi p value" = chi_ell$p.value, 
                  "Kormánypárti chi p value" = chi_korm$p.value, 
@@ -70,11 +72,16 @@ get_oddsr <- function(prediction, groupA, groupB){
   OR_korm <- odds.ratio(table(groupA[groupB==2], prediction[groupB==2]))
   print(table(groupA[groupB==2], prediction[groupB==2]))
   COR <- OR_ell$OR/OR_korm$OR
-  result <- list("Ellenzéki OR" = OR_ell$OR, "Kormánypárti OR" = OR_korm$OR, 
+  COR_seged <- 
+  result <- list("Ellenzéki OR" = OR_ell$OR, 
+                 "Conf. intervall_97.5"=OR_ell$`97.5 %`,
+                 "Conf. intervall_2.5"=OR_ell$`2.5 %`,
+                 "Kormánypárti OR" = OR_korm$OR, 
+                 "Conf. intervall_97.5"=OR_korm$`97.5 %`,
+                 "Conf. intervall_2.5"=OR_korm$`2.5 %`,
                  "Ellenzéki/Kormánypárti COR" = COR)
   return(result)
 }
-
 
 Orban <- c(get_chi(OrbánV$pred, OrbánV$period, OrbánV$side, OrbánV), 
                get_oddsr(OrbánV$pred, OrbánV$period, OrbánV$side))
@@ -99,7 +106,7 @@ row.names(eredmeny) <- c("Vona Gábor", "Szél Bernadett", "Orbán Viktor",
 
 ### write results ###
 
-setwd("~/Egyetemi/survey/Szakdolgozat/thesis_polsenti/results")
+setwd("~/Egyetemi/survey/Szakdolgozat/thesis_polsenti_2019/results")
 write.csv2(eredmeny, file = "./H2.csv",quote = T, fileEncoding = "UTF-8", row.names = T)
 
 get_perc <- function(prediction, who, groupA, groupB, data){
